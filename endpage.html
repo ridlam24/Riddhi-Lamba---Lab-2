@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Styles/style.css" rel="stylesheet" type="text/css">
+    <link href="Styles/addCards.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=Staatliches&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="toBeCentered">
+        <div class="green needsPadding">
+            <div class="toBeCentered">
+                <h1 class="yellow">Great Job!</h1>
+            </div>
+        
+            <div class="toBeCentered">
+                <h1 class="yellow">You studied it all!</h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let button = document.createElement("button");
+        let Elm = document.querySelector("body");
+        let Div = document.querySelector(".green");
+        let newDiv = document.createElement("div");
+        newDiv.className = "toBeCentered";
+
+        Div.appendChild(newDiv);
+
+        button.textContent = "Return to home page!";
+        newDiv.appendChild(button);
+        button.className = "blue";
+        button.addEventListener("click", returnHome);
+
+        function returnHome() {
+            window.location.pathname = ('/index.html');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Styles/style.css" rel="stylesheet" type="text/css">
+    <link href="Styles/addCards.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=Staatliches&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1 class="green">Let's practice!</h1>
+    </div>
+
+    <div>
+
+    </div>
+
+    <script>
+        var questions = localStorage.getItem('questions');
+        questions = JSON.parse(questions);
+
+        var answers = localStorage.getItem('answers');
+        answers = JSON.parse(answers);
+
+        var reviewQs = [];
+        var reviewAs = [];
+
+        var i = questions.length-1;
+
+        //console.log(questions);
+
+        let Elm = document.querySelector("body");
+        let Div = document.querySelector("div");
+
+        let item = document.createElement("h2");
+        item.className = "card yellow";
+        Div.appendChild(item);
+
+        let newDiv2 = document.createElement("div");
+        Elm.appendChild(newDiv2);
+        newDiv2.className = "toBeCentered";
+
+        let button = document.createElement("button");
+        button.textContent = "Flip!";
+        newDiv2.appendChild(button);
+
+        let delay = false;
+        let runCounter = 0;
+        let buttonCounter = 0;
+
+        runThrough(0);
+
+        function runThrough(x) {
+            buttonCounter ++;
+            let question = questions[x];
+            //console.log(question);
+            let answer = answers[x];
+
+            let button = document.querySelector("button");
+            button.className = "addPadding yellow";
+            button.addEventListener("click", function(){getCorrect(question,answer);});
+
+            item.textContent = question;
+            Div.removeChild(item);
+            Div.appendChild(item);
+        }
+
+        let item1 = document.createElement("h2");
+        Elm.appendChild(item1);
+        item1.style.display = 'none';
+        let item2 = document.createElement("h2");
+        Elm.appendChild(item2);
+        item2.style.display = 'none';
+        let newDiv = document.createElement("div");
+        newDiv.className = "toBeCentered";
+        Elm.appendChild(newDiv);
+        let cbutton = document.createElement("button");
+        newDiv.appendChild(cbutton);
+        cbutton.style.display = 'none';
+        let ibutton = document.createElement("button");
+        newDiv.appendChild(ibutton);
+        ibutton.style.display = 'none';
+
+        function getCorrect(question, answer) {
+            //let item1 = document.createElement("h2");
+            item1.textContent = answer;
+            item1.className = "answer card yellow";
+            //console.log(item1.textContent);
+            //Elm.appendChild(item1);
+            item1.style.display = 'block';
+
+            //let item2 = document.createElement("h2");
+            item2.textContent = "Did you get this correct?";
+            item2.className = "correct green";
+            //Elm.appendChild(item2);
+            item2.style.display = 'block';
+
+            //let cbutton = document.createElement("button");
+            cbutton.className = "cbutton green";
+            cbutton.textContent = "Yes!";
+            cbutton.addEventListener("click", correctMessage);
+            //Elm.appendChild(cbutton);
+            cbutton.style.display = 'initial';
+
+            //let ibutton = document.createElement("button");
+            ibutton.className = "ibutton green";
+            ibutton.textContent = "No :(";
+            ibutton.addEventListener("click", incorrectMessage);
+            //Elm.appendChild(ibutton);
+            ibutton.style.display = 'initial';
+        }
+
+        function correctMessage() {
+            alert("Great job!");
+            removeButtons();
+        }
+
+        function incorrectMessage() {
+            reviewQs.push(questions[buttonCounter-1]);
+            reviewAs.push(answers[buttonCounter-1]);
+            console.log(reviewQs);
+            alert("You'll get it next time!");
+            removeButtons();
+        }
+
+        function removeButtons() {
+            let answer = document.querySelector(".answer");
+            let correct = document.querySelector(".correct");
+            let cbutton = document.querySelector(".cbutton");
+            let ibutton = document.querySelector(".ibutton");
+
+            answer.style.display = 'none';
+            correct.style.display = 'none';
+            cbutton.style.display = 'none';
+            ibutton.style.display = 'none';
+
+            runCounter = buttonCounter;
+            
+            if (buttonCounter >= questions.length) {
+                if (reviewQs.length > 0) {
+                    alert("You finished! Let's review what you got wrong!")
+                    let heading = document.querySelector("h1");
+                    heading.textContent = "Review Time!";
+
+                    questions = reviewQs;
+                    answers = reviewAs;
+
+                    //questions.unshift(null);
+                    //answers.unshift(null);
+
+                    reviewQs = [];
+                    reviewAs = [];
+
+                    buttonCounter = 0;
+                }
+
+                else {
+                    window.location.pathname = ('/endpage.html');
+                }
+            }
+
+            if (buttonCounter < questions.length) {
+                runThrough(buttonCounter);
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Styles/style.css" rel="stylesheet" type="text/css">
+    <link href="Styles/addCards.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=Staatliches&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body> 
+    <div class="inline">
+    <div class="box1 green inside">
+   <div class="inline"><h1 class="yellow">Welcome to Flashcards!</h1></div>
+   <div class="inline one"><h2 class="yellow">Let's start a new deck:</h2></div>
+   <input class="center" type="text"><div class="inline two"><button class="yellow">Start New Deck</button></div>
+    </div>
+    </div>
+
+   <script>
+    var questions = [];
+    var answers = [];
+
+    let buttonElm = document.querySelector("button");
+    buttonElm.addEventListener("click", createNewDeck);
+
+    let deckRun = false;
+
+    function createNewDeck() {
+        let Elm = document.querySelector("body");
+        let Div = document.querySelector(".inside");
+        let Div1 = document.querySelector(".one");
+        let Div2 = document.querySelector(".two");
+        let Div3 = document.querySelector(".box1");
+        let inputElm = document.querySelector("input");
+
+        let value = inputElm.value;
+
+        if (inputElm.value) {
+            let heading = document.querySelector("h1");
+            let heading2 = document.querySelector("h2");
+            let button = document.querySelector("button");
+            let input = document.querySelector("input");
+
+            Div1.removeChild(heading2);
+            Div2.removeChild(button);
+            Div.removeChild(input);
+            Div3.className = 'box2';
+
+            let newDiv = document.createElement("div");
+            newDiv.style.display = "flex";
+
+            let newDiv1 = document.createElement("div");
+            newDiv1.style.display = "flex";
+            newDiv1.style.justifyContent = "center";
+
+            heading.textContent = "New Deck: " + value;
+            heading.className = "yellow";
+            
+            let promptUserToAdd = document.createElement("p");
+            promptUserToAdd.style.display = "inline";
+            promptUserToAdd.className = "yellow";
+            promptUserToAdd.textContent = "Let's add some flashcards!";
+            promptUserToAdd.style.marginLeft = "10px";
+            //let Elm = document.querySelector("body");
+
+            let flashcardQuestions = document.createElement("input");
+            flashcardQuestions.type = "text";
+            flashcardQuestions.className = "question left";
+            flashcardQuestions.style.marginLeft = "10px";
+
+            let Question = document.createElement("p");
+            Question.textContent = "Enter new term/question:";
+            Question.style.margin = "10px";
+            Question.style.marginTop = "15px";
+            Question.className = "green";
+
+            let flashcardAnswers = document.createElement("input");
+            flashcardAnswers.style.marginLeft = "10px";
+            flashcardAnswers.type = "text";
+            flashcardAnswers.className = "answer left";
+
+            let Answer = document.createElement("p");
+            Answer.style.display = "inline";
+            Answer.style.marginLeft = "10px";
+            Answer.textContent = "Enter answer:";
+            Answer.className = "green";
+
+            let addButton = document.createElement("button");
+            addButton.textContent = "Add Card";
+            addButton.className = "flashcardAdder green"
+            addButton.addEventListener("click", addFlashcards);
+
+            let endButton = document.createElement("button");
+            endButton.textContent = "I'm done adding cards!";
+            endButton.className = "ender yellow";
+            endButton.addEventListener("click", endAdding);
+
+            //Elm.appendChild(heading);
+            Elm.appendChild(newDiv1);
+            newDiv1.appendChild(promptUserToAdd);
+            //Elm.appendChild(promptUserToAdd);
+            Elm.appendChild(newDiv);
+            newDiv.appendChild(Question);
+            Elm.appendChild(flashcardQuestions);
+            Elm.appendChild(Answer);
+            Elm.appendChild(flashcardAnswers);
+            Elm.appendChild(addButton);
+            Elm.appendChild(endButton);
+        }
+
+        else {
+            alert("Please enter a deck name.");
+        }
+
+        inputElm.value = "";
+    }
+
+    function addFlashcards() {
+        let inputQ = document.querySelector(".question");
+        let inputA = document.querySelector(".answer");
+        
+        if (inputQ.value && inputA.value) {
+            questions.push(inputQ.value);
+            answers.push(inputA.value);
+            console.log(questions);
+            console.log(answers);
+        }
+
+        else {
+            alert("Please enter a question and answer");
+        }
+
+        inputQ.value = "";
+        inputA.value = "";
+    }
+
+    function endAdding() {
+        localStorage.setItem('questions', JSON.stringify(questions));
+        localStorage.setItem('answers', JSON.stringify(answers));
+
+        console.log(questions);
+
+        window.location.pathname = ('/flashcards.html');
+    }
+
+   </script>
+</body>
+</html>

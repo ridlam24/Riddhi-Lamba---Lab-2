@@ -1,0 +1,102 @@
+html {
+    background-color:blanchedalmond;
+}
+
+.box1 {
+    position:fixed;
+    top: 20%;
+    height:auto;
+    border-width:15px;
+    /*background-color:honeydew;
+    */
+    padding:10px;
+}
+
+.box2 {
+
+}
+
+h1 {
+    text-align:center;
+    padding: 5px;
+    /*border: 5px rgb(229, 225, 185) solid;
+    background-color:lemonchiffon;
+    */
+    font-family: 'Special Elite', cursive;
+}
+
+h2, p {
+    text-align:center;
+    font-family:'Special Elite', cursive;
+    padding: 5px;
+    /*border: 5px rgb(229, 225, 185) solid;
+    background-color:lemonchiffon;*/
+    font-size:25px;
+}
+
+input {
+    display:block;
+    margin:15px;
+    margin-bottom:20px;
+    font-family: 'Special Elite', cursive;
+    font-size:20px;
+    color:gray;
+    text-align:center;
+}
+
+button {
+    display:block;
+    font-family: 'Special Elite', cursive;
+    font-weight:bold;
+    font-size:20px;
+    margin:10px;
+    margin-bottom:10px;
+    /*border: 5px rgb(229, 225, 185) solid;
+    background-color:lemonchiffon;*/
+    padding:5px;
+}
+
+.center {
+    margin:0 auto;
+}
+
+.inline {
+    display:flex;
+    justify-content:center;
+}
+
+.ender {
+    display:block;
+    margin:10px;
+}
+
+.green {
+    background-color:honeydew;
+    border: 5px rgb(206, 235, 206) solid;
+}
+
+.yellow {
+    background-color:lemonchiffon;
+    border: 5px rgb(229, 225, 185) solid;
+}
+
+.blue {
+    background-color:azure;
+    border: 5px rgb(201, 225, 225) solid;
+}
+
+/*.green {
+    background-color:honeydew;
+    border: 5px rgb(206, 235, 206) solid;
+}
+
+.yellow {
+    background-color:lemonchiffon;
+    border: 5px rgb(229, 225, 185) solid;
+}
+
+.blue {
+    background-color:azure;
+    border: 5px rgb(201, 225, 225) solid;
+}
+*/

@@ -12,13 +12,14 @@
 <body>
     <div>
         <h1 class="green">Let's practice!</h1>
-    </div>
-
-    <div>
-
+        <h2 id="completed">Cards Completed: </h2>
     </div>
 
     <script>
+        let correctNumber = 0;
+        let incorrectNumber = 0;
+        let reviewNumber = 0;
+        
         var questions = localStorage.getItem('questions');
         questions = JSON.parse(questions);
 
@@ -34,6 +35,10 @@
 
         let Elm = document.querySelector("body");
         let Div = document.querySelector("div");
+
+        let completed = document.querySelector("#completed");
+
+        completed.textContent = "Cards Completed: " + correctNumber + " /" + (i+1);
 
         let item = document.createElement("h2");
         item.className = "card yellow";
@@ -114,6 +119,7 @@
         }
 
         function correctMessage() {
+            correctNumber ++;
             alert("Great job!");
             removeButtons();
         }
@@ -122,6 +128,8 @@
             reviewQs.push(questions[buttonCounter-1]);
             reviewAs.push(answers[buttonCounter-1]);
             console.log(reviewQs);
+            reviewNumber ++;
+            incorrectNumber ++;
             alert("You'll get it next time!");
             removeButtons();
         }
@@ -138,6 +146,8 @@
             ibutton.style.display = 'none';
 
             runCounter = buttonCounter;
+
+            completed.textContent = "Cards Completed: " + correctNumber + " /" + (i+1);
             
             if (buttonCounter >= questions.length) {
                 if (reviewQs.length > 0) {
@@ -155,9 +165,13 @@
                     reviewAs = [];
 
                     buttonCounter = 0;
+                    reviewNumber = 0;
                 }
 
                 else {
+                    let percent = Math.round((correctNumber/(correctNumber + incorrectNumber))*100);
+
+                    localStorage.setItem('percent', percent);
                     window.location.href = ('./endpage.html');
                 }
             }

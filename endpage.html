@@ -17,12 +17,16 @@
             </div>
         
             <div class="toBeCentered">
-                <h1 class="yellow">You studied it all!</h1>
+                <h1 class="yellow percentNeeded">You studied it all!</h1>
             </div>
         </div>
     </div>
 
     <script>
+        let percent = localStorage.getItem('percent');
+        let putPercent = document.querySelector(".percentNeeded");
+        putPercent.textContent = "You studied it all with " + percent + "% accuracy!";
+
         let button = document.createElement("button");
         let Elm = document.querySelector("body");
         let Div = document.querySelector(".green");

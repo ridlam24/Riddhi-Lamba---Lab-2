@@ -12,7 +12,7 @@
 <body> 
     <div class="inline">
     <div class="box1 green inside">
-   <div class="inline"><h1 class="yellow">Welcome to Flashcards!</h1></div>
+   <div class="inline"><h1 class="yellow italic"><span>Welcome to Flashcards!</span></h1></div>
    <div class="inline one"><h2 class="yellow">Let's start a new deck:</h2></div>
    <input class="center" type="text"><div class="inline two"><button class="yellow">Start New Deck</button></div>
     </div>
@@ -36,6 +36,7 @@
         let inputElm = document.querySelector("input");
 
         let value = inputElm.value;
+        localStorage.setItem('deckName', value);
 
         if (inputElm.value) {
             let heading = document.querySelector("h1");
@@ -55,8 +56,15 @@
             newDiv1.style.display = "flex";
             newDiv1.style.justifyContent = "center";
 
-            heading.textContent = "New Deck: " + value;
-            heading.className = "yellow";
+            let Span = document.querySelector("span");
+
+            Span.textContent = "New Deck: ";
+
+            let p = document.createElement("p");
+            p.textContent = value;
+            heading.appendChild(p);
+
+            heading.className = "yellow italic";
             
             let promptUserToAdd = document.createElement("p");
             promptUserToAdd.style.display = "inline";

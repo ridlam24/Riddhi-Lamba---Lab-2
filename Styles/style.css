@@ -18,11 +18,21 @@ html {
 
 h1 {
     text-align:center;
-    padding: 5px;
+    padding: 15px;
     /*border: 5px rgb(229, 225, 185) solid;
     background-color:lemonchiffon;
     */
     font-family: 'Special Elite', cursive;
+}
+
+span {
+    font-style:normal;
+    text-decoration:underline;
+}
+
+.italic {
+    font-style:italic;
+    font-weight:bold;
 }
 
 h2, p {

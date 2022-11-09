@@ -26,6 +26,11 @@
         var answers = localStorage.getItem('answers');
         answers = JSON.parse(answers);
 
+        let deckName = localStorage.getItem('deckName');
+
+        let Heading = document.querySelector("h1");
+        Heading.textContent = "Let's practice '" + deckName + "'!";
+
         var reviewQs = [];
         var reviewAs = [];
 

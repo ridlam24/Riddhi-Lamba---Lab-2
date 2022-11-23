@@ -35,6 +35,11 @@ span {
     font-weight:bold;
 }
 
+.extraPad {
+    padding-left:50px;
+    padding-right:50px;
+}
+
 h2, p {
     text-align:center;
     font-family:'Special Elite', cursive;

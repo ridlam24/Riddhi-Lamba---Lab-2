@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=Staatliches&display=swap" rel="stylesheet">
     <title>Flashcards!</title>
 </head>
+
+<!--put javascript in different file, make it possible to go back to original questions-->
+
 <body> 
     <div class="inline">
     <div class="box1 green inside">
@@ -59,6 +62,7 @@
             let Span = document.querySelector("span");
 
             Span.textContent = "New Deck: ";
+            Span.className = "extraPad";
 
             let p = document.createElement("p");
             p.textContent = value;
